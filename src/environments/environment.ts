@@ -2,6 +2,8 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { InjectionToken } from '@angular/core';
+
 export const environment = {
   production: false
 };
@@ -14,3 +16,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+export const MSAL_INSTANCE = new InjectionToken<string>("MSAL_INSTANCE");

@@ -1,0 +1,27 @@
+<div class="home-page-container">
+  <div class="home-panel">
+    <app-title></app-title>
+    <div *ngIf="!loggedIn">
+      <p>
+        Awesome, you're trying to share content and make your links shorter.
+        Because we want you to have full control over your links, we ask you to
+        login.
+      </p>
+      <button mat-flat-button color="primary" (click)="login()">Login</button>
+    </div>
+    <div *ngIf="loggedIn">
+      <div class="input-field">
+        <div class="input-field-text">
+          <input
+            type="text"
+            class="link-text-input"
+            (paste)="onPaste($event)"
+          />
+        </div>
+        <div class="input-field-button">
+          <button class="link-text-button">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

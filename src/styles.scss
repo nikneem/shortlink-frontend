@@ -1,1 +1,77 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./variables.scss";
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+}
+body {
+  margin: 0;
+  background-color: #121212;
+  color: #ccc;
+}
+
+.home-page-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: red;
+  align-items: center;
+  justify-content: center;
+  background-image: url(/assets/images/backgrounds/0001.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  .home-panel {
+    background: rgba($color: #000000, $alpha: 0.8);
+    border-radius: 1rem;
+    width: 640px;
+    padding: 2rem;
+
+    .input-field {
+      display: flex;
+      flex-flow: row;
+      .input-field-text {
+        flex: 9 9 90%;
+      }
+      .input-field-button {
+        flex: 1 1 10%;
+      }
+      .link-text-input {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        border-radius: 1rem 0 0 1rem;
+        border-style: solid;
+        font-size: 1rem;
+        font-family: Raleway;
+        padding: 0.5rem;
+        width: 100%;
+      }
+      .link-text-button {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        border-radius: 0 1rem 1rem 0;
+        border-style: solid;
+        font-size: 1rem;
+        font-family: Raleway;
+        padding: 0.5rem;
+        width: 100%;
+        cursor: pointer;
+      }
+      .link-text-input:focus {
+        outline: none;
+      }
+      .link-text-button:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}

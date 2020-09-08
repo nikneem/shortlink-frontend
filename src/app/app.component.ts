@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { MsalService } from './msal';
+import { MsalService } from './services/msal.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'shortlink-frontend';
@@ -15,7 +15,6 @@ export class AppComponent {
   constructor(private authService: MsalService) {}
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener;
-
     this.checkAccount();
   }
   checkAccount() {
@@ -23,12 +22,10 @@ export class AppComponent {
   }
 
   login() {
-    this.authService.loginPopup()
-      .subscribe(() => this.checkAccount());
+    this.authService.loginPopup().subscribe(() => this.checkAccount());
   }
 
   logout() {
     this.authService.logout();
   }
-
 }
