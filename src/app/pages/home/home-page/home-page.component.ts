@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@state/app.state';
 import { HomePostUrlAction } from '@state/home/home.actions';
+import { Subscription } from 'rxjs';
 import { MsalService } from 'src/app/services/msal.service';
 
 @Component({
@@ -9,9 +10,12 @@ import { MsalService } from 'src/app/services/msal.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent implements OnInit {
-  isIframe = false;
+export class HomePageComponent implements OnInit, OnDestroy {
   loggedIn = false;
+  private latestLinkSubscription: Subscription;
+
+  latestLink: string;
+  isLoading: boolean;
 
   constructor(
     private authService: MsalService,
@@ -37,7 +41,13 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isIframe = window !== window.parent && !window.opener;
+    //    this.isIframe = window !== window.parent && !window.opener;
     this.checkAccount();
+    this.latestLinkSubscription = this.store
+      .select((str) => str.homeState.latestShortLinkUrk)
+      .subscribe((val) => (this.latestLink = val));
+  }
+  ngOnDestroy(): void {
+    this.latestLinkSubscription.unsubscribe();
   }
 }

@@ -26,6 +26,7 @@ export class MsalInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    debugger;
     const scopes = this.getScopesForEndpoint(req.url);
     const account = this.authService.getAllAccounts()[0];
 
