@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '@state/app.state';
+import { HomePostUrlAction } from '@state/home/home.actions';
 import { MsalService } from 'src/app/services/msal.service';
 
 @Component({
@@ -7,18 +10,18 @@ import { MsalService } from 'src/app/services/msal.service';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  constructor(private authService: MsalService) {}
   isIframe = false;
   loggedIn = false;
-  ngOnInit(): void {
-    this.isIframe = window !== window.parent && !window.opener;
-    this.checkAccount();
-  }
+
+  constructor(
+    private authService: MsalService,
+    private store: Store<AppState>
+  ) {}
 
   onPaste(event: ClipboardEvent) {
-    let clipboardData = event.clipboardData || window.clipboardData;
+    let clipboardData = event.clipboardData;
     let pastedText = clipboardData.getData('text');
-    alert(pastedText);
+    this.store.dispatch(new HomePostUrlAction(pastedText));
   }
 
   checkAccount() {
@@ -31,5 +34,10 @@ export class HomePageComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  ngOnInit(): void {
+    this.isIframe = window !== window.parent && !window.opener;
+    this.checkAccount();
   }
 }

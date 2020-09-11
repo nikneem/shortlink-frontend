@@ -12,9 +12,13 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@pages/*": ["src/app/pages/*"],
+      "@services/*": ["src/app/services/*"],
+      "@components/*": ["src/app/shared/components/*"],
+      "@templates/*": ["src/app/templates/*"],
+      "@state/*": ["src/app/state/*"]
+    }
   }
 }
