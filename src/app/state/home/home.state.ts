@@ -1,12 +1,14 @@
 export interface HomeState {
-  latestShortLinkUrk: string;
+  latestShortLinkUrl: string;
+  isLoggedOn: boolean;
 
   isLoading: boolean;
   errorMessage: string;
 }
 
 export const INITIAL_HOME_STATE: HomeState = {
-  latestShortLinkUrk: null,
+  latestShortLinkUrl: null,
+  isLoggedOn: false,
 
   errorMessage: null,
   isLoading: false,

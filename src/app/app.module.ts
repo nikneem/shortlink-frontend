@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import {
   HTTP_INTERCEPTORS,
   HttpClientModule,
@@ -8,16 +8,16 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {
-  IPublicClientApplication,
-  PublicClientApplication,
-} from '@azure/msal-browser';
-import { environment, MSAL_INSTANCE } from 'src/environments/environment';
-import { MsalService } from './services/msal.service';
-import { MsalGuard } from './shared/guards/auth.guard';
-import { MsalInterceptor } from './shared/interceptors/auth-interceptor.ts/auth-interceptor.ts.component';
+import { environment } from 'src/environments/environment';
 import { HomeModule } from './pages/home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {
+  AuthModule,
+  LogLevel,
+  OidcConfigService,
+  OidcSecurityService,
+} from 'angular-auth-oidc-client';
 
 /* NGRX / Redux */
 import { storeFreeze } from 'ngrx-store-freeze';
@@ -30,14 +30,30 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { reducers, INITIAL_APPSTATE } from '@state/app.state';
 import { HomeEffects } from '@state/home/home.effects';
+import { AuthorizationGuard } from './shared/guards/auth.guard';
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 
-function MSALInstanceFactory(): IPublicClientApplication {
-  return new PublicClientApplication({
-    auth: {
+export function loadConfig(oidcConfigService: OidcConfigService) {
+  return () =>
+    oidcConfigService.withConfig({
+      stsServer:
+        'https://login.microsoftonline.com/7ff95b15-dc21-4ba6-bc92-824856578fc1/v2.0',
+      authWellknownEndpoint: 'https://login.microsoftonline.com/common/v2.0',
+      redirectUrl: `${window.location.origin}/auth`,
       clientId: '3c62e326-4f03-4b68-8190-88b2a3603894',
-      redirectUri: 'http://localhost:4200',
-    },
-  });
+      scope:
+        'openid profile email api://3c62e326-4f03-4b68-8190-88b2a3603894/shortlinks:maintenance',
+      responseType: 'code',
+      silentRenew: true,
+      maxIdTokenIatOffsetAllowedInSeconds: 600,
+      issValidationOff: true,
+      autoUserinfo: false,
+      silentRenewUrl: window.location.origin + '/silent-renew.html',
+      // customParams: {
+      //     response_mode: 'fragment',
+      //     prompt: 'consent',
+      // },
+    });
 }
 
 let metaReducers = [];
@@ -70,19 +86,23 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    AuthModule.forRoot(),
   ],
   providers: [
+    OidcSecurityService,
+    OidcConfigService,
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MsalInterceptor,
+      provide: APP_INITIALIZER,
+      useFactory: loadConfig,
+      deps: [OidcConfigService],
       multi: true,
     },
+    AuthorizationGuard,
     {
-      provide: MSAL_INSTANCE,
-      useFactory: MSALInstanceFactory,
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
     },
-    MsalService,
-    MsalGuard,
   ],
   bootstrap: [AppComponent],
 })

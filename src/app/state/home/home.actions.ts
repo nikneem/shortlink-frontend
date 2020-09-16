@@ -2,10 +2,16 @@ import { Action } from '@ngrx/store';
 import { CreateNewShortLinkDto, ShortLinkDetailsDto } from './home.models';
 
 export const homeActions = {
+  homeSetLoginState: '[home] setLoginState',
   homePostUrl: '[home] postUrl',
   homePostUrlFailed: '[home] postUrlFailed',
   homePostUrlCompleted: '[home] postUrlCompleted',
 };
+
+export class HomeSetLoginStateAction implements Action {
+  readonly type = homeActions.homeSetLoginState;
+  constructor(public isLoggedOn: boolean) {}
+}
 
 export class HomePostUrlAction implements Action {
   readonly type = homeActions.homePostUrl;

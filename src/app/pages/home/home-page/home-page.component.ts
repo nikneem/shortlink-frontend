@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@state/app.state';
 import { HomePostUrlAction } from '@state/home/home.actions';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Subscription } from 'rxjs';
-import { MsalService } from 'src/app/services/msal.service';
 
 @Component({
   selector: 'app-home-page',
@@ -12,40 +12,58 @@ import { MsalService } from 'src/app/services/msal.service';
 })
 export class HomePageComponent implements OnInit, OnDestroy {
   loggedIn = false;
+  endpointUrl: string;
   private latestLinkSubscription: Subscription;
 
   latestLink: string;
   isLoading: boolean;
 
   constructor(
-    private authService: MsalService,
+    public oidcSecurityService: OidcSecurityService,
     private store: Store<AppState>
   ) {}
 
   onPaste(event: ClipboardEvent) {
     let clipboardData = event.clipboardData;
     let pastedText = clipboardData.getData('text');
-    this.store.dispatch(new HomePostUrlAction(pastedText));
+    this.endpointUrl = pastedText;
+    // event.stopPropagation();
+    // this.createNewShortLink(this.endpointUrl);
+    //    alert(this.endpointUrl);
+  }
+  onEnter(event: any) {
+    this.createNewShortLink(this.endpointUrl);
+  }
+  addLink() {
+    this.createNewShortLink(this.endpointUrl);
   }
 
-  checkAccount() {
-    this.loggedIn = this.authService.getAllAccounts().length > 0;
+  createNewShortLink(endpoint: string) {
+    this.store.dispatch(new HomePostUrlAction(endpoint));
   }
 
   login() {
-    this.authService.loginPopup().subscribe(() => this.checkAccount());
+    this.oidcSecurityService.authorize();
   }
 
   logout() {
-    this.authService.logout();
+    this.oidcSecurityService.logoff();
   }
 
   ngOnInit(): void {
-    //    this.isIframe = window !== window.parent && !window.opener;
-    this.checkAccount();
     this.latestLinkSubscription = this.store
-      .select((str) => str.homeState.latestShortLinkUrk)
+      .select((str) => str.homeState.isLoggedOn)
+      .subscribe((val) => {
+        this.loggedIn = val;
+        console.log(val);
+      });
+
+    this.latestLinkSubscription = this.store
+      .select((str) => str.homeState.latestShortLinkUrl)
       .subscribe((val) => (this.latestLink = val));
+    this.latestLinkSubscription = this.store
+      .select((str) => str.homeState.isLoading)
+      .subscribe((val) => (this.isLoading = val));
   }
   ngOnDestroy(): void {
     this.latestLinkSubscription.unsubscribe();

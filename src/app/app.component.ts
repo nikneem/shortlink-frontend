@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { MsalService } from './services/msal.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '@state/app.state';
+import { HomeSetLoginStateAction } from '@state/home/home.actions';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'app-root',
@@ -9,23 +12,18 @@ import { MsalService } from './services/msal.service';
 export class AppComponent {
   title = 'shortlink-frontend';
 
-  isIframe = false;
-  loggedIn = false;
+  constructor(
+    private oidcSecurityService: OidcSecurityService,
+    private store: Store<AppState>
+  ) {}
 
-  constructor(private authService: MsalService) {}
-  ngOnInit(): void {
-    this.isIframe = window !== window.parent && !window.opener;
-    this.checkAccount();
-  }
   checkAccount() {
-    this.loggedIn = this.authService.getAllAccounts().length > 0;
+    this.oidcSecurityService.checkAuth().subscribe((isAuthenticated) => {
+      this.store.dispatch(new HomeSetLoginStateAction(isAuthenticated));
+    });
   }
 
-  login() {
-    this.authService.loginPopup().subscribe(() => this.checkAccount());
-  }
-
-  logout() {
-    this.authService.logout();
+  ngOnInit(): void {
+    this.checkAccount();
   }
 }

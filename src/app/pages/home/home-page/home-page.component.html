@@ -28,17 +28,18 @@
                 (paste)="onPaste($event)"
                 (keyup.enter)="onEnter($event)"
                 [disabled]="isLoading ? 'disabled' : null"
+                [(ngModel)]="endpointUrl"
               />
             </div>
             <div class="input-field-button">
-              <button class="link-text-button">Add</button>
+              <button class="link-text-button" (click)="addLink()">Add</button>
             </div>
           </div>
         </div>
       </div>
       <div class="logged-in-controls">
         <button mat-flat-button color="accent" *ngIf="latestLink">
-          {{ latestLink }}
+          https://4dn.me/{{ latestLink }}
         </button>
         <button mat-flat-button color="accent" (click)="logout()">
           Logout
@@ -48,3 +49,4 @@
     </div>
   </div>
 </div>
+<app-loading *ngIf="isLoading"></app-loading>

@@ -5,6 +5,8 @@ import { HomeState } from './home.state';
 export function HomeReducer(state: HomeState, action: any) {
   {
     switch (action.type) {
+      case homeActions.homeSetLoginState:
+        return { ...state, isLoggedOn: action.isLoggedOn };
       case homeActions.homePostUrl:
         return { ...state, isLoading: true };
       case homeActions.homePostUrlCompleted:
@@ -36,6 +38,7 @@ function homePostUrlCompletedHandler(
   //     }
   //   }
   //   targetState.listItems = catalogsList;
+  targetState.latestShortLinkUrl = action.dto.shortCode;
   targetState.isLoading = false;
   return targetState;
 }

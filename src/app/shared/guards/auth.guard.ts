@@ -1,33 +1,38 @@
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { MsalService } from 'src/app/services/msal.service';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-@Injectable()
-export class MsalGuard implements CanActivate {
-    constructor( private authService: MsalService) {}
+@Injectable({ providedIn: 'root' })
+export class AuthorizationGuard implements CanActivate {
+  constructor(
+    private oidcSecurityService: OidcSecurityService,
+    private router: Router
+  ) {}
 
-    private loginInteractively():  Observable<boolean> {
-        return this.authService.loginPopup()
-            .pipe(
-                map(() => true),
-                catchError(() => from([false]))
-            )
-    }
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> {
+    return this.oidcSecurityService.isAuthenticated$.pipe(
+      map((isAuthorized: boolean) => {
+        console.log(
+          'AuthorizationGuard, canActivate isAuthorized: ' + isAuthorized
+        );
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
-        if (!this.authService.getAllAccounts().length) {
-            return this.loginInteractively();
+        if (!isAuthorized) {
+          //          this.router.navigate(['/unauthorized']);
+          return false;
         }
 
-        const loginHint = this.authService.getAllAccounts()[0].username;
-
-        return this.authService.ssoSilent({loginHint, scopes: []})
-            .pipe(
-                map(() => true),
-                catchError(() => this.loginInteractively())
-            )
-    }
-
+        return true;
+      })
+    );
+  }
 }
