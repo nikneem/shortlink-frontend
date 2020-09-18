@@ -6,9 +6,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page.component';
+import { LoggedOutPageComponent } from './logged-out-page/logged-out-page.component';
 
 @NgModule({
-  declarations: [HomePageComponent, AuthPageComponent, UnauthorizedPageComponent],
+  declarations: [HomePageComponent, AuthPageComponent, UnauthorizedPageComponent, LoggedOutPageComponent],
   imports: [CommonModule, HomeRoutingModule, SharedModule],
 })
 export class HomeModule {}

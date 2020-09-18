@@ -47,6 +47,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   logout() {
+    this.oidcSecurityService.logoffLocal();
     this.oidcSecurityService.logoff();
   }
 
@@ -55,7 +56,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
       .select((str) => str.homeState.isLoggedOn)
       .subscribe((val) => {
         this.loggedIn = val;
-        console.log(val);
       });
 
     this.latestLinkSubscription = this.store

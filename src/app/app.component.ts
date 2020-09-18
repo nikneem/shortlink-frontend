@@ -2,7 +2,12 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@state/app.state';
 import { HomeSetLoginStateAction } from '@state/home/home.actions';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
+import {
+  EventTypes,
+  OidcSecurityService,
+  PublicEventsService,
+} from 'angular-auth-oidc-client';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +19,8 @@ export class AppComponent {
 
   constructor(
     private oidcSecurityService: OidcSecurityService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private eventService: PublicEventsService
   ) {}
 
   checkAccount() {
@@ -25,5 +31,16 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.checkAccount();
+    this.eventService
+      .registerForEvents()
+      .pipe(
+        filter(
+          (notification) =>
+            notification.type === EventTypes.CheckSessionReceived
+        )
+      )
+      .subscribe((value) =>
+        console.log('CheckSessionReceived with value from app', value)
+      );
   }
 }

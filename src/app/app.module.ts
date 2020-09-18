@@ -37,22 +37,18 @@ export function loadConfig(oidcConfigService: OidcConfigService) {
   return () =>
     oidcConfigService.withConfig({
       stsServer:
-        'https://login.microsoftonline.com/7ff95b15-dc21-4ba6-bc92-824856578fc1/v2.0',
-      authWellknownEndpoint: 'https://login.microsoftonline.com/common/v2.0',
+        'https://login.microsoftonline.com/922cee41-db95-4eff-8022-9b815f545dee/v2.0',
       redirectUrl: `${window.location.origin}/auth`,
+      postLoginRoute: `http://localhost:4200/logged-out`,
       clientId: '3c62e326-4f03-4b68-8190-88b2a3603894',
       scope:
-        'openid profile email api://3c62e326-4f03-4b68-8190-88b2a3603894/shortlinks:maintenance',
+        'openid profile email offline_access api://3c62e326-4f03-4b68-8190-88b2a3603894/shortlinks:maintenance',
       responseType: 'code',
       silentRenew: true,
       maxIdTokenIatOffsetAllowedInSeconds: 600,
       issValidationOff: true,
       autoUserinfo: false,
-      silentRenewUrl: window.location.origin + '/silent-renew.html',
-      // customParams: {
-      //     response_mode: 'fragment',
-      //     prompt: 'consent',
-      // },
+      silentRenewUrl: `${window.location.origin}/silent-renew.html`,
     });
 }
 

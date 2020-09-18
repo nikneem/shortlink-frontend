@@ -27,7 +27,7 @@ export class AuthorizationGuard implements CanActivate {
         );
 
         if (!isAuthorized) {
-          //          this.router.navigate(['/unauthorized']);
+          this.router.navigate(['/home']);
           return false;
         }
 
