@@ -12,12 +12,13 @@ export class AuthPageComponent implements OnInit {
 
   handleLoginRedirect() {
     // this.oidc.checkAuth().subscribe((val) => {
-    //   var path = val ? '/home' : '/unauthorized';
-    //   this.router.navigate(['/home']);
+    //   if (val) {
+    //     this.router.navigate(['/home']);
+    //   }
     // });
   }
 
   ngOnInit(): void {
-    this.handleLoginRedirect();
+    //this.handleLoginRedirect();
   }
 }

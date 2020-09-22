@@ -1,0 +1,9 @@
+.maintenance-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 2rem;
+  .maintenance-panel {
+    width: 920px;
+  }
+}

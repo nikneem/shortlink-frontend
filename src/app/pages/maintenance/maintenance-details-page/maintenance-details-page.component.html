@@ -1,0 +1,14 @@
+<div *ngIf="form">
+  <form class="details-form" [formGroup]="form">
+    <mat-form-field class="full-width">
+      <mat-label>Code</mat-label>
+      <input matInput formControlName="shortCode" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Endpoint</mat-label>
+      <input matInput formControlName="endpointUrl" />
+    </mat-form-field>
+  </form>
+  {{ model.endpointUrl }}
+</div>
+<app-loading *ngIf="isLoading"></app-loading>

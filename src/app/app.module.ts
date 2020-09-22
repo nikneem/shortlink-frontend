@@ -32,6 +32,8 @@ import { reducers, INITIAL_APPSTATE } from '@state/app.state';
 import { HomeEffects } from '@state/home/home.effects';
 import { AuthorizationGuard } from './shared/guards/auth.guard';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
+import { MaintenanceModule } from '@pages/maintenance/maintenance.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export function loadConfig(oidcConfigService: OidcConfigService) {
   return () =>
@@ -39,7 +41,7 @@ export function loadConfig(oidcConfigService: OidcConfigService) {
       stsServer:
         'https://login.microsoftonline.com/922cee41-db95-4eff-8022-9b815f545dee/v2.0',
       redirectUrl: `${window.location.origin}/auth`,
-      postLoginRoute: `http://localhost:4200/logged-out`,
+      postLoginRoute: 'http://localhost:4200/auth',
       clientId: '3c62e326-4f03-4b68-8190-88b2a3603894',
       scope:
         'openid profile email offline_access api://3c62e326-4f03-4b68-8190-88b2a3603894/shortlinks:maintenance',
@@ -64,9 +66,12 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     HomeModule,
+    MaintenanceModule,
     HttpClientModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducers, {

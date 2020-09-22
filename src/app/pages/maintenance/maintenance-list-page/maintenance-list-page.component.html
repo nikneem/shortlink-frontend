@@ -1,0 +1,45 @@
+<div class="list" *ngIf="list">
+  <mat-table [dataSource]="list">
+    <ng-container matColumnDef="shortCode">
+      <mat-header-cell *matHeaderCellDef class="cell-xs">
+        Code
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="cell-xs">
+        <a [routerLink]="['/maintenance', element.id]">
+          {{ element.shortCode }}
+        </a>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="endpointUrl">
+      <mat-header-cell mat-header-cell *matHeaderCellDef class="cell-l">
+        Endpoint
+      </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element" class="cell-l">
+        {{ element.endpointUrl }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="expirationOn">
+      <mat-header-cell mat-header-cell *matHeaderCellDef class="cell-xs">
+        Expiration
+      </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element" class="cell-xs">
+        {{ element.expirationOn | date }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="totalHits">
+      <mat-header-cell mat-header-cell *matHeaderCellDef class="cell-xxs">
+        Hits
+      </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element" class="cell-xxs">
+        {{ element.totalHits }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>
+<app-loading *ngIf="isLoading"></app-loading>

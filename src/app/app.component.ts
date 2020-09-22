@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '@state/app.state';
 import { HomeSetLoginStateAction } from '@state/home/home.actions';
@@ -20,12 +21,18 @@ export class AppComponent {
   constructor(
     private oidcSecurityService: OidcSecurityService,
     private store: Store<AppState>,
-    private eventService: PublicEventsService
+    private eventService: PublicEventsService,
+    private router: Router
   ) {}
 
   checkAccount() {
     this.oidcSecurityService.checkAuth().subscribe((isAuthenticated) => {
       this.store.dispatch(new HomeSetLoginStateAction(isAuthenticated));
+      if (isAuthenticated) {
+        if (this.router.url.startsWith('/auth?code=')) {
+          this.router.navigate(['/home']);
+        }
+      }
     });
   }
 

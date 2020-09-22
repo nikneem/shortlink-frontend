@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+
+.cell-xxs {
+  flex: 1 1 10%;
+}
+.cell-xs {
+  flex: 2 2 20%;
+}
+.cell-s {
+  flex: 3 3 30%;
+}
+.cell-m {
+  flex: 4 4 40%;
+}
+.cell-l {
+  flex: 5 5 50%;
+}
+.cell-xl {
+  flex: 6 6 60%;
+}
+.cell-xxl {
+  flex: 7 7 70%;
+}

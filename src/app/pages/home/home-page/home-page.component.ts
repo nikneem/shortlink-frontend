@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '@state/app.state';
 import { HomePostUrlAction } from '@state/home/home.actions';
@@ -20,7 +21,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   constructor(
     public oidcSecurityService: OidcSecurityService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {}
 
   onPaste(event: ClipboardEvent) {
@@ -42,13 +44,17 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.store.dispatch(new HomePostUrlAction(endpoint));
   }
 
+  navigateMaintenance() {
+    this.router.navigate(['/maintenance']);
+  }
+
   login() {
     this.oidcSecurityService.authorize();
   }
 
   logout() {
     this.oidcSecurityService.logoffLocal();
-    this.oidcSecurityService.logoff();
+    //    this.oidcSecurityService.logoff();
   }
 
   ngOnInit(): void {
