@@ -1,0 +1,21 @@
+@import "../../../../variables.scss";
+
+.hits-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  .hits-circle {
+    width: 156px;
+    height: 156px;
+    background-color: $primary;
+    border-radius: 50%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    .hits-value {
+      font-size: 3rem;
+    }
+  }
+}

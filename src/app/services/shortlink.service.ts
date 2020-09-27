@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   CreateNewShortLinkDto,
   ShortLinkDetailsDto,
 } from '@state/home/home.models';
+import { ShortLinkUpdateDto } from '@state/maintenance-details/maintenance-details.models';
 import { ShortLinkListItemDto } from '@state/maintenance-list/maintenance-list.models';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -33,5 +34,12 @@ export class ShortlinkService {
   public post(dto: CreateNewShortLinkDto): Observable<ShortLinkDetailsDto> {
     var url = `${this.baseUrl}/api/shortlinks`;
     return this.http.post<ShortLinkDetailsDto>(url, dto);
+  }
+
+  public put(dto: ShortLinkUpdateDto): Observable<HttpResponse<{}>> {
+    var url = `${this.baseUrl}/api/shortlink/${dto.id}`;
+    return this.http.put<ShortLinkDetailsDto>(url, dto, {
+      observe: 'response',
+    });
   }
 }

@@ -8,9 +8,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { MaintenanceListEffects } from '@state/maintenance-list/maintenance-list.effects';
 import { MaintenanceDetailsPageComponent } from './maintenance-details-page/maintenance-details-page.component';
 import { MaintenanceDetailsEffects } from '@state/maintenance-details/maintenance-details.effects';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaintenanceHitsComponent } from './maintenance-hits/maintenance-hits.component';
 
 @NgModule({
-  declarations: [MaintenanceListPageComponent, MaintenanceDetailsPageComponent],
+  declarations: [MaintenanceListPageComponent, MaintenanceDetailsPageComponent, MaintenanceHitsComponent],
   imports: [
     CommonModule,
     MaintenanceRoutingModule,
@@ -19,6 +21,8 @@ import { MaintenanceDetailsEffects } from '@state/maintenance-details/maintenanc
       MaintenanceListEffects,
       MaintenanceDetailsEffects,
     ]),
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class MaintenanceModule {}

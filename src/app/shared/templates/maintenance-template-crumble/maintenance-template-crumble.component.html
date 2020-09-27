@@ -1,1 +1,5 @@
-<span>My Shortlinks</span>
+<span *ngIf="!model">All</span>
+<a [routerLink]="['/maintenance']" *ngIf="model">
+  <span>All</span>
+</a>
+<span *ngIf="model"> > {{ model.shortCode }}</span>

@@ -160,6 +160,16 @@ button {
   width: 100%;
 }
 
+.controls-panel {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  button {
+    margin-left: 1rem;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

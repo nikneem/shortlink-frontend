@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@state/app.state';
+import { MaintenanceDetailsReset } from '@state/maintenance-details/maintenance-details.actions';
 import { MaintenanceListGetList } from '@state/maintenance-list/maintenance-list.actions';
 import { ShortLinkListItemDto } from '@state/maintenance-list/maintenance-list.models';
 import { Subscription } from 'rxjs';
@@ -34,6 +35,7 @@ export class MaintenanceListPageComponent implements OnInit, OnDestroy {
       .subscribe((val) => (this.list = val));
 
     this.store.dispatch(new MaintenanceListGetList());
+    this.store.dispatch(new MaintenanceDetailsReset());
   }
   ngOnDestroy(): void {
     this.loadingSubscription.unsubscribe();

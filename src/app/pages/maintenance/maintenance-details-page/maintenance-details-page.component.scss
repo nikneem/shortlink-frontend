@@ -1,0 +1,10 @@
+.details-page {
+  display: flex;
+  flex-flow: row;
+  .details-container {
+    flex: 3 3 75%;
+  }
+  .statistics-container {
+    flex: 1 1 25%;
+  }
+}

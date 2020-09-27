@@ -3,7 +3,20 @@
   flex-flow: column;
   align-items: center;
   padding: 2rem;
+
+  width: 100vw;
+  height: 100vh;
+  background-image: url(/assets/images/backgrounds/0001.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
+
   .maintenance-panel {
     width: 920px;
   }
+}
+
+.shortlink-header-image {
+  background-image: url("/assets/images/4dn.png");
+  background-size: cover;
 }

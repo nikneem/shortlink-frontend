@@ -1,14 +1,55 @@
-<div *ngIf="form">
-  <form class="details-form" [formGroup]="form">
-    <mat-form-field class="full-width">
-      <mat-label>Code</mat-label>
-      <input matInput formControlName="shortCode" />
-    </mat-form-field>
-    <mat-form-field class="full-width">
-      <mat-label>Endpoint</mat-label>
-      <input matInput formControlName="endpointUrl" />
-    </mat-form-field>
-  </form>
-  {{ model.endpointUrl }}
+<div class="details-page">
+  <div class="details-container" *ngIf="form">
+    <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+      <input type="hidden" formControlName="id" />
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Code" formControlName="shortCode" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Endpoint" formControlName="endpointUrl" />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          [matDatepicker]="createdOnPicker"
+          formControlName="createdOn"
+          placeholder="Created"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="createdOnPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #createdOnPicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          [matDatepicker]="expirationOnPicker"
+          formControlName="expirationOn"
+          placeholder="Expiration"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="expirationOnPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #expirationOnPicker></mat-datepicker>
+      </mat-form-field>
+    </form>
+    <div class="controls-panel">
+      <button mat-flat-button color="accent" (click)="back()">Back</button>
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!form.valid || form.pristine"
+        (click)="save()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+  <div class="statistics-container" *ngIf="model">
+    <app-maintenance-hits [hits]="model.totalHits"></app-maintenance-hits>
+  </div>
 </div>
 <app-loading *ngIf="isLoading"></app-loading>

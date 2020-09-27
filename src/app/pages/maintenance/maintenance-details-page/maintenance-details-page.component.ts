@@ -1,10 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '@state/app.state';
 import { ShortLinkDetailsDto } from '@state/home/home.models';
-import { MaintenanceDetailsGetDetails } from '@state/maintenance-details/maintenance-details.actions';
+import {
+  MaintenanceDetailsGetDetails,
+  MaintenanceDetailsUpdateDetails,
+} from '@state/maintenance-details/maintenance-details.actions';
+import { ShortLinkUpdateDto } from '@state/maintenance-details/maintenance-details.models';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -21,7 +25,11 @@ export class MaintenanceDetailsPageComponent implements OnInit, OnDestroy {
   isLoading: boolean;
   form: FormGroup;
 
-  constructor(private route: ActivatedRoute, private store: Store<AppState>) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private store: Store<AppState>
+  ) {}
 
   loadDetailsWhenRequired() {
     if (this.model && this.model.id === this.linkId) {
@@ -32,7 +40,10 @@ export class MaintenanceDetailsPageComponent implements OnInit, OnDestroy {
           Validators.required,
         ]),
         totalHits: new FormControl(this.model.totalHits),
-        createdOn: new FormControl(this.model.createdOn),
+        createdOn: new FormControl({
+          value: this.model.createdOn,
+          disabled: true,
+        }),
         expirationOn: new FormControl(this.model.expirationOn, [
           Validators.required,
         ]),
@@ -42,6 +53,16 @@ export class MaintenanceDetailsPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  submitForm() {
+    console.log(this.form.value);
+  }
+  save() {
+    var dto = new ShortLinkUpdateDto(this.form.value);
+    this.store.dispatch(new MaintenanceDetailsUpdateDetails(dto));
+  }
+  back() {
+    this.router.navigate(['/maintenance']);
+  }
   ngOnInit(): void {
     this.linkId = this.route.snapshot.paramMap.get('id');
 

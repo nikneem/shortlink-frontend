@@ -38,9 +38,7 @@
         </div>
       </div>
       <div class="logged-in-controls">
-        <button mat-flat-button color="accent" *ngIf="latestLink">
-          https://4dn.me/{{ latestLink }}
-        </button>
+        <span *ngIf="latestLink"> https://4dn.me/{{ latestLink }} </span>
         <button mat-flat-button color="accent" (click)="logout()">
           Logout
         </button>
