@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'http://test-main.4dn.me',
+  backendUrl: 'https://shortlink-test-maintenance-app.azurewebsites.net',
 };
 
 /*
