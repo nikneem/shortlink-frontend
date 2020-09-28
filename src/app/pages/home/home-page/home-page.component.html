@@ -37,8 +37,13 @@
           </div>
         </div>
       </div>
+      <div class="error-message" *ngIf="errorMessage">
+        <span *ngFor="let msg of errorMessage">{{ msg }}</span>
+      </div>
       <div class="logged-in-controls">
-        <span *ngIf="latestLink"> https://4dn.me/{{ latestLink }} </span>
+        <span class="latest-link" *ngIf="latestLink">
+          https://4dn.me/{{ latestLink }}
+        </span>
         <button mat-flat-button color="accent" (click)="logout()">
           Logout
         </button>

@@ -8,9 +8,15 @@ export function HomeReducer(state: HomeState, action: any) {
       case homeActions.homeSetLoginState:
         return { ...state, isLoggedOn: action.isLoggedOn };
       case homeActions.homePostUrl:
-        return { ...state, isLoading: true };
+        return { ...state, isLoading: true, errorMessage: null };
       case homeActions.homePostUrlCompleted:
         return homePostUrlCompletedHandler(state, action);
+      case homeActions.homePostUrlFailed:
+        return {
+          ...state,
+          isLoading: false,
+          errorMessage: action.errorMessage,
+        };
       default:
         return state;
     }
@@ -22,22 +28,6 @@ function homePostUrlCompletedHandler(
   action: HomePostUrlCompletedAction
 ): HomeState {
   const targetState: HomeState = Object.assign({}, state);
-
-  //   const catalogsList = _.cloneDeep(targetState.listItems) as Array<
-  //     CatalogListItemDto
-  //   >;
-  //   if (catalogsList) {
-  //     const catalog = _.find(catalogsList, {
-  //       id: action.itemId,
-  //     });
-  //     if (catalog) {
-  //       const itemIndex = catalogsList.indexOf(catalog);
-  //       if (itemIndex >= 0) {
-  //         catalogsList.splice(itemIndex, 1);
-  //       }
-  //     }
-  //   }
-  //   targetState.listItems = catalogsList;
   targetState.latestShortLinkUrl = action.dto.shortCode;
   targetState.isLoading = false;
   return targetState;

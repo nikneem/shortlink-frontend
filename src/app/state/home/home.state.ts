@@ -3,7 +3,7 @@ export interface HomeState {
   isLoggedOn: boolean;
 
   isLoading: boolean;
-  errorMessage: string;
+  errorMessage: Array<string>;
 }
 
 export const INITIAL_HOME_STATE: HomeState = {

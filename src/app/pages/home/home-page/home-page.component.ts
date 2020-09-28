@@ -14,10 +14,14 @@ import { Subscription } from 'rxjs';
 export class HomePageComponent implements OnInit, OnDestroy {
   loggedIn = false;
   endpointUrl: string;
+  private isLoggedInSubscription: Subscription;
   private latestLinkSubscription: Subscription;
+  private isLoadingSubscription: Subscription;
+  private errorMessageSubscription: Subscription;
 
   latestLink: string;
   isLoading: boolean;
+  errorMessage: Array<string>;
 
   constructor(
     public oidcSecurityService: OidcSecurityService,
@@ -28,10 +32,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   onPaste(event: ClipboardEvent) {
     let clipboardData = event.clipboardData;
     let pastedText = clipboardData.getData('text');
-    this.endpointUrl = pastedText;
-    // event.stopPropagation();
-    // this.createNewShortLink(this.endpointUrl);
-    //    alert(this.endpointUrl);
+    this.createNewShortLink(pastedText);
   }
   onEnter(event: any) {
     this.createNewShortLink(this.endpointUrl);
@@ -58,7 +59,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.latestLinkSubscription = this.store
+    this.isLoggedInSubscription = this.store
       .select((str) => str.homeState.isLoggedOn)
       .subscribe((val) => {
         this.loggedIn = val;
@@ -67,11 +68,17 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.latestLinkSubscription = this.store
       .select((str) => str.homeState.latestShortLinkUrl)
       .subscribe((val) => (this.latestLink = val));
-    this.latestLinkSubscription = this.store
+    this.isLoadingSubscription = this.store
       .select((str) => str.homeState.isLoading)
       .subscribe((val) => (this.isLoading = val));
+    this.errorMessageSubscription = this.store
+      .select((str) => str.homeState.errorMessage)
+      .subscribe((val) => (this.errorMessage = val));
   }
   ngOnDestroy(): void {
+    this.isLoggedInSubscription.unsubscribe();
     this.latestLinkSubscription.unsubscribe();
+    this.isLoadingSubscription.unsubscribe();
+    this.errorMessageSubscription.unsubscribe();
   }
 }

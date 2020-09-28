@@ -28,5 +28,5 @@ export class HomePostUrlCompletedAction implements Action {
 }
 export class HomePostUrlFailedAction implements Action {
   readonly type = homeActions.homePostUrlFailed;
-  constructor(public errorMessage: string) {}
+  constructor(public errorMessage: Array<string>) {}
 }

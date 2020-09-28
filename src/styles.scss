@@ -61,6 +61,7 @@ button {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom center;
+
   .home-panel {
     background: rgba($color: #000000, $alpha: 0.8);
     border-radius: 1rem;
@@ -76,6 +77,13 @@ button {
         justify-content: flex-end;
       }
     }
+    .error-message {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      color: $error;
+    }
 
     .logged-in-controls {
       margin-top: 2rem;
@@ -84,6 +92,10 @@ button {
       justify-content: flex-end;
       button {
         margin-left: 1rem;
+      }
+      .latest-link {
+        padding: 0.4rem;
+        color: #fff;
       }
     }
     .input-field {
