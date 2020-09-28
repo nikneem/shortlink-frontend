@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: deploy_dist
-          path: dist
+          path: dist/shortlink-frontend
 
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
