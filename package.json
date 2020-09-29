@@ -30,6 +30,7 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "angular-auth-oidc-client": "^11.2.0",
+    "chart.js": "^2.9.3",
     "minimatch": "^3.0.4",
     "ngrx-store-freeze": "0.2.4",
     "path": "^0.12.7",

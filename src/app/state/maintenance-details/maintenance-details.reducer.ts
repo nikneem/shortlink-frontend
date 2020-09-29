@@ -8,7 +8,7 @@ export function MaintenanceDetailsReducer(
   {
     switch (action.type) {
       case maintenanceDetailsActions.reset:
-        return { ...state, model: null };
+        return { ...state, model: null, hourlyHits: null, dailyHits: null };
 
       case maintenanceDetailsActions.getDetails:
         return { ...state, isLoading: true };
@@ -23,6 +23,17 @@ export function MaintenanceDetailsReducer(
         return { ...state, isLoading: false, model: null };
       case maintenanceDetailsActions.updateDetailsFailed:
         return { ...state, isLoading: false };
+
+      case maintenanceDetailsActions.getHourlyHitsComplete:
+        return { ...state, hourlyHits: action.chartData };
+      case maintenanceDetailsActions.updateDetailsFailed:
+        return { ...state, hourlyHits: null };
+
+      case maintenanceDetailsActions.getDailyHitsComplete:
+        return { ...state, dailyHits: action.chartData };
+      case maintenanceDetailsActions.getDailyHitsFailed:
+        return { ...state, dailyHits: null };
+
       default:
         return state;
     }

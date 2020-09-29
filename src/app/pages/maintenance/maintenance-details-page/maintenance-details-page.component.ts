@@ -5,7 +5,9 @@ import { Store } from '@ngrx/store';
 import { AppState } from '@state/app.state';
 import { ShortLinkDetailsDto } from '@state/home/home.models';
 import {
+  MaintenanceDetailsGetDailyHits,
   MaintenanceDetailsGetDetails,
+  MaintenanceDetailsGetHourlyHits,
   MaintenanceDetailsUpdateDetails,
 } from '@state/maintenance-details/maintenance-details.actions';
 import { ShortLinkUpdateDto } from '@state/maintenance-details/maintenance-details.models';
@@ -33,24 +35,34 @@ export class MaintenanceDetailsPageComponent implements OnInit, OnDestroy {
 
   loadDetailsWhenRequired() {
     if (this.model && this.model.id === this.linkId) {
-      this.form = new FormGroup({
-        id: new FormControl(this.model.id, [Validators.required]),
-        shortCode: new FormControl(this.model.shortCode, [Validators.required]),
-        endpointUrl: new FormControl(this.model.endpointUrl, [
-          Validators.required,
-        ]),
-        totalHits: new FormControl(this.model.totalHits),
-        createdOn: new FormControl({
-          value: this.model.createdOn,
-          disabled: true,
-        }),
-        expirationOn: new FormControl(this.model.expirationOn, [
-          Validators.required,
-        ]),
-      });
+      this.constructForm();
+      this.store.dispatch(
+        new MaintenanceDetailsGetHourlyHits(this.model.shortCode)
+      );
+      this.store.dispatch(
+        new MaintenanceDetailsGetDailyHits(this.model.shortCode)
+      );
     } else {
       this.store.dispatch(new MaintenanceDetailsGetDetails(this.linkId));
     }
+  }
+
+  constructForm() {
+    this.form = new FormGroup({
+      id: new FormControl(this.model.id, [Validators.required]),
+      shortCode: new FormControl(this.model.shortCode, [Validators.required]),
+      endpointUrl: new FormControl(this.model.endpointUrl, [
+        Validators.required,
+      ]),
+      totalHits: new FormControl(this.model.totalHits),
+      createdOn: new FormControl({
+        value: this.model.createdOn,
+        disabled: true,
+      }),
+      expirationOn: new FormControl(this.model.expirationOn, [
+        Validators.required,
+      ]),
+    });
   }
 
   submitForm() {

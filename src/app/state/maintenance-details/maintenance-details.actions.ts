@@ -1,6 +1,10 @@
 import { Action } from '@ngrx/store';
 import { ShortLinkDetailsDto } from '@state/home/home.models';
-import { ShortLinkUpdateDto } from './maintenance-details.models';
+import {
+  DailyHitsDto,
+  HourlyHitsDto,
+  ShortLinkUpdateDto,
+} from './maintenance-details.models';
 
 export const maintenanceDetailsActions = {
   reset: '[maintenanceDetailsActions] reset',
@@ -12,6 +16,14 @@ export const maintenanceDetailsActions = {
   updateDetails: '[maintenanceDetailsActions] updateDetails',
   updateDetailsComplete: '[maintenanceDetailsActions] updateDetailsComplete',
   updateDetailsFailed: '[maintenanceDetailsActions] updateDetailsFailed',
+
+  getHourlyHits: '[maintenanceDetailsActions] getHourlyHits',
+  getHourlyHitsComplete: '[maintenanceDetailsActions] getHourlyHitsComplete',
+  getHourlyHitsFailed: '[maintenanceDetailsActions] getHourlyHitsFailed',
+
+  getDailyHits: '[maintenanceDetailsActions] getDailyHits',
+  getDailyHitsComplete: '[maintenanceDetailsActions] getDailyHitsComplete',
+  getDailyHitsFailed: '[maintenanceDetailsActions] getDailyHitsFailed',
 };
 
 export class MaintenanceDetailsReset implements Action {
@@ -42,5 +54,31 @@ export class MaintenanceDetailsUpdateDetailsComplete implements Action {
 }
 export class MaintenanceDetailsUpdateDetailsFailed implements Action {
   readonly type = maintenanceDetailsActions.updateDetailsFailed;
+  constructor(public errorMessage: string) {}
+}
+
+export class MaintenanceDetailsGetHourlyHits implements Action {
+  readonly type = maintenanceDetailsActions.getHourlyHits;
+  constructor(public shortCode: string) {}
+}
+export class MaintenanceDetailsGetHourlyHitsComplete implements Action {
+  readonly type = maintenanceDetailsActions.getHourlyHitsComplete;
+  constructor(public chartData: Array<HourlyHitsDto>) {}
+}
+export class MaintenanceDetailsGetHourlyHitsFailed implements Action {
+  readonly type = maintenanceDetailsActions.getHourlyHitsFailed;
+  constructor(public errorMessage: string) {}
+}
+
+export class MaintenanceDetailsGetDailyHits implements Action {
+  readonly type = maintenanceDetailsActions.getDailyHits;
+  constructor(public shortCode: string) {}
+}
+export class MaintenanceDetailsGetDailyHitsComplete implements Action {
+  readonly type = maintenanceDetailsActions.getDailyHitsComplete;
+  constructor(public chartData: Array<DailyHitsDto>) {}
+}
+export class MaintenanceDetailsGetDailyHitsFailed implements Action {
+  readonly type = maintenanceDetailsActions.getDailyHitsFailed;
   constructor(public errorMessage: string) {}
 }

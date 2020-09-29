@@ -50,6 +50,8 @@
   </div>
   <div class="statistics-container" *ngIf="model">
     <app-maintenance-hits [hits]="model.totalHits"></app-maintenance-hits>
+    <app-hourly-chart></app-hourly-chart>
+    <app-daily-chart></app-daily-chart>
   </div>
 </div>
 <app-loading *ngIf="isLoading"></app-loading>
