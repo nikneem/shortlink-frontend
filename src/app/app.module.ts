@@ -38,13 +38,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export function loadConfig(oidcConfigService: OidcConfigService) {
   return () =>
     oidcConfigService.withConfig({
-      stsServer:
-        'https://login.microsoftonline.com/922cee41-db95-4eff-8022-9b815f545dee/v2.0',
+      stsServer: 'https://login.microsoftonline.com/common/v2.0',
       redirectUrl: `${window.location.origin}/auth`,
       postLoginRoute: 'http://localhost:4200/auth',
-      clientId: '3c62e326-4f03-4b68-8190-88b2a3603894',
+      clientId: '5e039917-1ed1-4706-bd47-1f1608c10e09',
       scope:
-        'openid profile email offline_access api://3c62e326-4f03-4b68-8190-88b2a3603894/shortlinks:maintenance',
+        'openid profile email offline_access api://5e039917-1ed1-4706-bd47-1f1608c10e09/shortlinks:maintenance',
       responseType: 'code',
       silentRenew: true,
       maxIdTokenIatOffsetAllowedInSeconds: 600,
