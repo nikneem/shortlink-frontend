@@ -1,10 +1,10 @@
 <div class="list" *ngIf="list">
   <mat-table [dataSource]="list">
     <ng-container matColumnDef="shortCode">
-      <mat-header-cell *matHeaderCellDef class="cell-xs">
+      <mat-header-cell *matHeaderCellDef class="cell-xs shortlink-code">
         Code
       </mat-header-cell>
-      <mat-cell *matCellDef="let element" class="cell-xs">
+      <mat-cell *matCellDef="let element" class="cell-xs shortlink-code">
         <a [routerLink]="['/maintenance', element.id]">
           {{ element.shortCode }}
         </a>
@@ -12,28 +12,53 @@
     </ng-container>
 
     <ng-container matColumnDef="endpointUrl">
-      <mat-header-cell mat-header-cell *matHeaderCellDef class="cell-l">
+      <mat-header-cell
+        mat-header-cell
+        *matHeaderCellDef
+        class="cell-l shortlink-endpoint"
+      >
         Endpoint
       </mat-header-cell>
-      <mat-cell mat-cell *matCellDef="let element" class="cell-l">
+      <mat-cell
+        mat-cell
+        *matCellDef="let element"
+        class="cell-l shortlink-endpoint"
+        title="{{ element.endpointUrl }}"
+      >
         {{ element.endpointUrl }}
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="expirationOn">
-      <mat-header-cell mat-header-cell *matHeaderCellDef class="cell-xs">
+      <mat-header-cell
+        mat-header-cell
+        *matHeaderCellDef
+        class="cell-xs shortlink-expiration"
+      >
         Expiration
       </mat-header-cell>
-      <mat-cell mat-cell *matCellDef="let element" class="cell-xs">
+      <mat-cell
+        mat-cell
+        *matCellDef="let element"
+        class="cell-xs shortlink-expiration"
+      >
         {{ element.expirationOn | date }}
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="totalHits">
-      <mat-header-cell mat-header-cell *matHeaderCellDef class="cell-xxs">
+      <mat-header-cell
+        mat-header-cell
+        *matHeaderCellDef
+        class="cell-xxs shortlink-hits"
+      >
         Hits
       </mat-header-cell>
-      <mat-cell mat-cell *matCellDef="let element" class="cell-xxs">
+      <mat-cell
+        mat-cell
+        *matCellDef="let element"
+        class="cell-xxs shortlink-hits"
+      >
         {{ element.totalHits }}
       </mat-cell>
     </ng-container>
