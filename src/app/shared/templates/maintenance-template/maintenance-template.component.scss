@@ -12,11 +12,33 @@
   background-position: bottom center;
 
   .maintenance-panel {
-    width: 920px;
+    width: 90%;
   }
 }
 
 .shortlink-header-image {
   background-image: url("/assets/images/4dn.png");
   background-size: cover;
+}
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 1200px) {
+  .maintenance-container {
+    .maintenance-panel {
+      width: 920px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+}
+
+@media only screen and (max-width: 767px) {
+  /* phones */
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+  /* portrait phones */
 }
