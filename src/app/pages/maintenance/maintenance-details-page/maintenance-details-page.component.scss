@@ -1,10 +1,48 @@
 .details-page {
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
   .details-container {
-    flex: 3 3 75%;
   }
   .statistics-container {
-    flex: 1 1 25%;
+    display: none;
   }
+}
+
+@media only screen and (min-width: 768px) {
+  .details-page {
+    .statistics-container {
+      padding-top: 2rem;
+      display: flex;
+      flex-flow: row;
+      * {
+        flex: 1 1 33%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .details-page {
+    display: flex;
+    flex-flow: row;
+    .details-container {
+      flex: 3 3 75%;
+    }
+    .statistics-container {
+      padding-top: 0;
+      flex: 1 1 25%;
+      flex-flow: column;
+    }
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+}
+
+@media only screen and (max-width: 767px) {
+  /* phones */
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+  /* portrait phones */
 }
