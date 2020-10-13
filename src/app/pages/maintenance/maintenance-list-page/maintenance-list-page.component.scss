@@ -1,3 +1,17 @@
+.shortlink-code {
+}
+.shortlink-endpoint {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.shortlink-expiration {
+  display: none;
+}
+.shortlink-hits {
+  display: none;
+}
+
 table {
   width: 100%;
 }
@@ -22,4 +36,28 @@ table {
 }
 .cell-xxl {
   flex: 7 7 70%;
+}
+
+@media only screen and (min-width: 768px) {
+  .shortlink-endpoint {
+    margin-right: 1rem;
+  }
+  .shortlink-hits {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .shortlink-expiration {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+}
+
+@media only screen and (max-width: 767px) {
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
 }
