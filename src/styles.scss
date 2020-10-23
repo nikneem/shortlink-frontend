@@ -173,12 +173,36 @@ button {
 }
 
 .controls-panel {
-  margin-top: 2rem;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  button {
-    margin-left: 1rem;
+  .left-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    button {
+      margin-right: 1rem;
+    }
+  }
+  .right-controls {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: flex-end;
+    button {
+      margin-left: 1rem;
+    }
+  }
+  margin-top: 2rem;
+}
+
+.empty-state-frame {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  .empty-state-panel {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
   }
 }
 
