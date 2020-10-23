@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DeleteConfirmationComponent } from '@components/delete-confirmation/delete-confirmation.component';
 import { Store } from '@ngrx/store';
 import { AppState } from '@state/app.state';
 import { ShortLinkDetailsDto } from '@state/home/home.models';
@@ -31,7 +33,8 @@ export class MaintenanceDetailsPageComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private dialog: MatDialog
   ) {}
 
   loadDetailsWhenRequired() {
@@ -74,7 +77,18 @@ export class MaintenanceDetailsPageComponent implements OnInit, OnDestroy {
     this.store.dispatch(new MaintenanceDetailsUpdateDetails(dto));
   }
   delete() {
-    this.store.dispatch(new MaintenanceDetailsDeleteDetails(this.linkId));
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent
+      ,{
+        data: {name: this.model.shortCode},
+        maxWidth: 460
+      }      );
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        this.store.dispatch(new MaintenanceDetailsDeleteDetails(this.linkId));
+      }
+    });
+    
   }
   back() {
     this.router.navigate(['/maintenance']);

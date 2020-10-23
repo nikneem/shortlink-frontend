@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>{{'DeleteConfirmation.Title' | translate : {name: name} }}</h2>
+<mat-dialog-content>
+  {{'DeleteConfirmation.Message' |  translate : {name: name} }}
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button color="warn" [mat-dialog-close]="true">Delete</button>
+  <button mat-flat-button [mat-dialog-close]="false">Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+</mat-dialog-actions>
