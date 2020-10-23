@@ -1,5 +1,9 @@
 {
   "ErrorCode": {
     "InvalidUrl": "This URL is invalid, please enter a valid URL Endpoint"
+  },
+  "DeleteConfirmation": {
+    "Title": "Delete {{name}}",
+    "Message": "Deleting a shortlink will disable the minified URL and remove all related statistics permanently. Are you sure you wish to delete '{{name}}'?"
   }
 }

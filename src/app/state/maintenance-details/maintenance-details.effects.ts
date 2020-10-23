@@ -14,6 +14,9 @@ import { Observable, of } from 'rxjs';
 import { debounceTime, switchMap, map, catchError, tap } from 'rxjs/operators';
 import {
   maintenanceDetailsActions,
+  MaintenanceDetailsDeleteDetails,
+  MaintenanceDetailsDeleteDetailsComplete,
+  MaintenanceDetailsDeleteDetailsFailed,
   MaintenanceDetailsGetDailyHits,
   MaintenanceDetailsGetDailyHitsComplete,
   MaintenanceDetailsGetDailyHitsFailed,
@@ -25,6 +28,7 @@ import {
   MaintenanceDetailsGetHourlyHitsFailed,
   MaintenanceDetailsUpdateDetails,
   MaintenanceDetailsUpdateDetailsComplete,
+  MaintenanceDetailsUpdateDetailsFailed,
 } from './maintenance-details.actions';
 
 @Injectable()
@@ -61,6 +65,23 @@ export class MaintenanceDetailsEffects {
         ),
         tap(() => this.router.navigate(['/maintenance'])),
         catchError((error) => of(new MaintenanceDetailsGetDetailsFailed(error)))
+      )
+    )
+  );
+
+  @Effect()
+  deleteDetails$: Observable<Action> = this.actions$.pipe(
+    ofType<MaintenanceDetailsDeleteDetails>(
+      maintenanceDetailsActions.deleteDetails
+    ),
+    debounceTime(300),
+    switchMap((action) =>
+      this.shortLinkService.delete(action.id).pipe(
+        map(
+          (resp) => new MaintenanceDetailsDeleteDetailsComplete(action.id)
+        ),
+        tap(() => this.router.navigate(['/maintenance'])),
+        catchError((error) => of(new MaintenanceDetailsDeleteDetailsFailed(error)))
       )
     )
   );

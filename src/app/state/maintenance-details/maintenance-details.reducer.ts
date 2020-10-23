@@ -24,6 +24,13 @@ export function MaintenanceDetailsReducer(
       case maintenanceDetailsActions.updateDetailsFailed:
         return { ...state, isLoading: false };
 
+      case maintenanceDetailsActions.deleteDetails:
+        return { ...state, isLoading: true };
+      case maintenanceDetailsActions.deleteDetailsComplete:
+        return { ...state, isLoading: false, model: null };
+      case maintenanceDetailsActions.deleteDetailsFailed:
+        return { ...state, isLoading: false, errorMessage: action.errorMessage };
+
       case maintenanceDetailsActions.getHourlyHitsComplete:
         return { ...state, hourlyHits: action.chartData };
       case maintenanceDetailsActions.updateDetailsFailed:

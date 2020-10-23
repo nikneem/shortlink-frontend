@@ -1,4 +1,4 @@
-<div class="list" *ngIf="list">
+<div class="list" *ngIf="list && list.length > 0">
   <mat-table [dataSource]="list">
     <ng-container matColumnDef="shortCode">
       <mat-header-cell *matHeaderCellDef class="cell-xs shortlink-code">
@@ -66,5 +66,12 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
+</div>
+<div class="empty-state-frame" *ngIf="!isLoading && list && list.length === 0">
+  <div class="empty-state-panel">
+      <img src="/assets/images/sattelite.svg" style="width: 140px; height: 160px" />
+      <h3>Nothing here</h3>
+      <p>We've been looking everywhere, but couldn't find anything that belongs to you</p>
+  </div>
 </div>
 <app-loading *ngIf="isLoading"></app-loading>

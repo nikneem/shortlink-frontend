@@ -37,6 +37,10 @@
       </mat-form-field>
     </form>
     <div class="controls-panel">
+      <div class="left-controls">
+        <button mat-flat-button color="warn" (click)="delete()">Delete</button>
+      </div>
+      <div class="right-controls">
       <button mat-flat-button color="accent" (click)="back()">Back</button>
       <button
         mat-flat-button
@@ -46,6 +50,7 @@
       >
         Save
       </button>
+    </div>
     </div>
   </div>
   <div class="statistics-container" *ngIf="model">

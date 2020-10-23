@@ -42,4 +42,11 @@ export class ShortlinkService {
       observe: 'response',
     });
   }
+
+  public delete(id: string): Observable<HttpResponse<{}>> {
+    var url = `${this.baseUrl}/api/shortlink/${id}`;
+    return this.http.delete(url, {
+      observe: 'response',
+    });
+  }
 }
