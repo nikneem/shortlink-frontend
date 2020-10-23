@@ -195,6 +195,17 @@ button {
   margin-top: 2rem;
 }
 
+.empty-state-frame {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  .empty-state-panel {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
