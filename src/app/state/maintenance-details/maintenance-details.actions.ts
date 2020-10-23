@@ -17,6 +17,10 @@ export const maintenanceDetailsActions = {
   updateDetailsComplete: '[maintenanceDetailsActions] updateDetailsComplete',
   updateDetailsFailed: '[maintenanceDetailsActions] updateDetailsFailed',
 
+  deleteDetails: '[maintenanceDetailsActions] deleteDetails',
+  deleteDetailsComplete: '[maintenanceDetailsActions] deleteDetailsComplete',
+  deleteDetailsFailed: '[maintenanceDetailsActions] deleteDetailsFailed',
+
   getHourlyHits: '[maintenanceDetailsActions] getHourlyHits',
   getHourlyHitsComplete: '[maintenanceDetailsActions] getHourlyHitsComplete',
   getHourlyHitsFailed: '[maintenanceDetailsActions] getHourlyHitsFailed',
@@ -56,6 +60,20 @@ export class MaintenanceDetailsUpdateDetailsFailed implements Action {
   readonly type = maintenanceDetailsActions.updateDetailsFailed;
   constructor(public errorMessage: string) {}
 }
+
+export class MaintenanceDetailsDeleteDetails implements Action {
+  readonly type = maintenanceDetailsActions.deleteDetails;
+  constructor(public id: string) {}
+}
+export class MaintenanceDetailsDeleteDetailsComplete implements Action {
+  readonly type = maintenanceDetailsActions.deleteDetailsComplete;
+  constructor(public id: string) {}
+}
+export class MaintenanceDetailsDeleteDetailsFailed implements Action {
+  readonly type = maintenanceDetailsActions.deleteDetailsFailed;
+  constructor(public errorMessage: string) {}
+}
+
 
 export class MaintenanceDetailsGetHourlyHits implements Action {
   readonly type = maintenanceDetailsActions.getHourlyHits;

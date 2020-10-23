@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '@state/app.state';
 import { ShortLinkDetailsDto } from '@state/home/home.models';
 import {
+  MaintenanceDetailsDeleteDetails,
   MaintenanceDetailsGetDailyHits,
   MaintenanceDetailsGetDetails,
   MaintenanceDetailsGetHourlyHits,
@@ -71,6 +72,9 @@ export class MaintenanceDetailsPageComponent implements OnInit, OnDestroy {
   save() {
     var dto = new ShortLinkUpdateDto(this.form.value);
     this.store.dispatch(new MaintenanceDetailsUpdateDetails(dto));
+  }
+  delete() {
+    this.store.dispatch(new MaintenanceDetailsDeleteDetails(this.linkId));
   }
   back() {
     this.router.navigate(['/maintenance']);
