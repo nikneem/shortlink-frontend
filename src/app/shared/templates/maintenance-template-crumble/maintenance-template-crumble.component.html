@@ -1,5 +1,5 @@
-<span *ngIf="!model">All</span>
+<span *ngIf="!model">{{'Crumble.All' | translate}}</span>
 <a [routerLink]="['/maintenance']" *ngIf="model">
-  <span>All</span>
+  <span>{{'Crumble.All' | translate}}</span>
 </a>
 <span *ngIf="model"> > {{ model.shortCode }}</span>

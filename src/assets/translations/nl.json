@@ -1,0 +1,9 @@
+{
+  "ErrorCode": {
+    "InvalidUrl": "Deze URL is ongeldig. Voer een geldige URL in en probeer het opnieuw."
+  },
+  "DeleteConfirmation": {
+    "Title": "Verwijder {{name}}",
+    "Message": "Door het verwijderen van een shortlink zal de verkorte link niet meer werken en worden alle gerelateerde statistieken permanent verwijderd. Weet u zeker dat u '{{name}}' wilt verwijderen?"
+  }
+}

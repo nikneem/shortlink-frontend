@@ -2,7 +2,7 @@
   <mat-table [dataSource]="list">
     <ng-container matColumnDef="shortCode">
       <mat-header-cell *matHeaderCellDef class="cell-xs shortlink-code">
-        Code
+        {{ 'Maintenance.Code' | translate }}
       </mat-header-cell>
       <mat-cell *matCellDef="let element" class="cell-xs shortlink-code">
         <a [routerLink]="['/maintenance', element.id]">
@@ -17,7 +17,7 @@
         *matHeaderCellDef
         class="cell-l shortlink-endpoint"
       >
-        Endpoint
+      {{ 'Maintenance.Endpoint' | translate }}
       </mat-header-cell>
       <mat-cell
         mat-cell
@@ -35,7 +35,7 @@
         *matHeaderCellDef
         class="cell-xs shortlink-expiration"
       >
-        Expiration
+      {{ 'Maintenance.Expiration' | translate }}
       </mat-header-cell>
       <mat-cell
         mat-cell
@@ -52,7 +52,7 @@
         *matHeaderCellDef
         class="cell-xxs shortlink-hits"
       >
-        Hits
+      {{ 'Maintenance.Hits' | translate }}
       </mat-header-cell>
       <mat-cell
         mat-cell
@@ -70,8 +70,8 @@
 <div class="empty-state-frame" *ngIf="!isLoading && list && list.length === 0">
   <div class="empty-state-panel">
       <img src="/assets/images/sattelite.svg" style="width: 140px; height: 160px" />
-      <h3>Nothing here</h3>
-      <p>We've been looking everywhere, but couldn't find anything that belongs to you</p>
+      <h3>{{'Maintenance.EmptyState.Title' | translate}}</h3>
+      <p>{{'Maintenance.EmptyState.Message' | translate}}</p>
   </div>
 </div>
 <app-loading *ngIf="isLoading"></app-loading>

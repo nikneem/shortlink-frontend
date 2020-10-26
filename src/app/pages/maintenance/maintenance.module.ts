@@ -10,6 +10,7 @@ import { MaintenanceDetailsPageComponent } from './maintenance-details-page/main
 import { MaintenanceDetailsEffects } from '@state/maintenance-details/maintenance-details.effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaintenanceHitsComponent } from './maintenance-hits/maintenance-hits.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [MaintenanceListPageComponent, MaintenanceDetailsPageComponent, MaintenanceHitsComponent],
@@ -23,6 +24,7 @@ import { MaintenanceHitsComponent } from './maintenance-hits/maintenance-hits.co
     ]),
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule
   ],
 })
 export class MaintenanceModule {}
