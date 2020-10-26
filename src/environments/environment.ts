@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'http://localhost:7071',
-  prodbackendUrl: 'https://shortlink-prod-maintenance-app.azurewebsites.net',
+  backendUrl: 'https://shortlink-prod-maintenance-app.azurewebsites.net',
 };
 
 /*
