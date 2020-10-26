@@ -1,9 +1,40 @@
 {
+  "App": {
+    "Subtitle": "Small, yet powefull"
+  },
+  "Home": {
+    "Description": "Awesome, you're trying to share content and make your links shorter. Because we want you to have full control over your links, we ask you to login. You don't have to create an account, just log in with your favorite login authority and you're good to go.",
+    "Instruction": "Type or paste your link in the textbox below to shorten it."
+  },
+  "Maintenance": {
+    "Header": "ShortLinks Maintenance Mode",
+    "Code": "Code",
+    "Endpoint": "Endpoint",
+    "Created": "Created",
+    "Expiration": "Expiration",
+    "Hits": "Hits",
+    "EmptyState": {
+      "Title": "Nothing here",
+      "Message": "We've been looking everywhere, but couldn't find anything that belongs to you"
+    }
+  },
   "ErrorCode": {
     "InvalidUrl": "This URL is invalid, please enter a valid URL Endpoint"
   },
   "DeleteConfirmation": {
     "Title": "Delete {{name}}",
     "Message": "Deleting a shortlink will disable the minified URL and remove all related statistics permanently. Are you sure you wish to delete '{{name}}'?"
+  },
+  "Button": {
+    "Login": "Login",
+    "New": "New",
+    "Logout": "Logout",
+    "Maintenance": "Maintenance",
+    "Delete": "Delete",
+    "Save": "Save",
+    "Back": "Back"
+  },
+  "Crumble": {
+    "All": "All"
   }
 }

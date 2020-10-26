@@ -3,18 +3,18 @@
     <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
       <input type="hidden" formControlName="id" />
       <mat-form-field class="full-width">
-        <input matInput placeholder="Code" formControlName="shortCode" />
+        <input matInput [placeholder]="'Maintenance.Code' | translate" formControlName="shortCode" />
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Endpoint" formControlName="endpointUrl" />
+        <input matInput [placeholder]="'Maintenance.Endpoint' | translate" formControlName="endpointUrl" />
       </mat-form-field>
       <mat-form-field class="full-width">
         <input
           matInput
           [matDatepicker]="createdOnPicker"
           formControlName="createdOn"
-          placeholder="Created"
+          [placeholder]="'Maintenance.Created' | translate"
         />
         <mat-datepicker-toggle
           matSuffix
@@ -27,7 +27,7 @@
           matInput
           [matDatepicker]="expirationOnPicker"
           formControlName="expirationOn"
-          placeholder="Expiration"
+          [placeholder]="'Maintenance.Expiration' | translate"
         />
         <mat-datepicker-toggle
           matSuffix
@@ -38,17 +38,17 @@
     </form>
     <div class="controls-panel">
       <div class="left-controls">
-        <button mat-flat-button color="warn" (click)="delete()">Delete</button>
+        <button mat-flat-button color="warn" (click)="delete()">{{'Button.Delete' | translate}}</button>
       </div>
       <div class="right-controls">
-      <button mat-flat-button color="accent" (click)="back()">Back</button>
+      <button mat-flat-button color="accent" (click)="back()">{{'Button.Back' | translate}}</button>
       <button
         mat-flat-button
         color="primary"
         [disabled]="!form.valid || form.pristine"
         (click)="save()"
       >
-        Save
+      {{'Button.Save' | translate}}
       </button>
     </div>
     </div>

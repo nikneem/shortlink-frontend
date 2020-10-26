@@ -4,19 +4,16 @@
     <div *ngIf="!loggedIn" class="not-logged-in">
       <div class="not-logged-in-info">
         <p>
-          Awesome, you're trying to share content and make your links shorter.
-          Because we want you to have full control over your links, we ask you
-          to login. You don't have to create an account, just log in with your
-          favorite login authority and you're good to go.
+          {{ 'Home.Description' | translate }}
         </p>
       </div>
       <div class="not-logged-in-controls">
-        <button mat-flat-button color="primary" (click)="login()">Login</button>
+        <button mat-flat-button color="primary" (click)="login()">{{ 'Button.Login' | translate }}</button>
       </div>
     </div>
     <div *ngIf="loggedIn" class="logged-in">
       <div class="logged-in-info">
-        <p>Type or paste your link in the textbox below to shorten it.</p>
+        <p>{{ 'Home.Instruction' | translate }}</p>
       </div>
       <div class="logged-in-input">
         <div class="input-field-component">
@@ -32,7 +29,7 @@
               />
             </div>
             <div class="input-field-button">
-              <button class="link-text-button" (click)="addLink()">Add</button>
+              <button class="link-text-button" (click)="addLink()">{{ 'Button.New' | translate }}</button>
             </div>
           </div>
         </div>
@@ -45,10 +42,10 @@
           https://4dn.me/{{ latestLink }}
         </span>
         <button mat-flat-button color="accent" (click)="logout()">
-          Logout
+          {{ 'Button.Logout' | translate }}
         </button>
         <button mat-flat-button color="primary" (click)="navigateMaintenance()">
-          Maintenance
+          {{ 'Button.Maintenance' | translate }}
         </button>
       </div>
     </div>
