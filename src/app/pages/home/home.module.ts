@@ -8,9 +8,10 @@ import { AuthPageComponent } from './auth-page/auth-page.component';
 import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page.component';
 import { LoggedOutPageComponent } from './logged-out-page/logged-out-page.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HomePageComponent, AuthPageComponent, UnauthorizedPageComponent, LoggedOutPageComponent],
-  imports: [CommonModule, HomeRoutingModule, SharedModule, TranslateModule],
+  imports: [CommonModule, HomeRoutingModule, SharedModule, TranslateModule, FormsModule],
 })
 export class HomeModule {}
