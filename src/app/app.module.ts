@@ -41,6 +41,7 @@ export function loadConfig(oidcConfigService: OidcConfigService) {
       stsServer: 'https://login.microsoftonline.com/common/v2.0',
       redirectUrl: `${window.location.origin}/auth`,
       postLoginRoute: `${window.location.origin}/auth`,
+      postLogoutRedirectUri: `${window.location.origin}/logged-off`,
       clientId: '5e039917-1ed1-4706-bd47-1f1608c10e09',
       scope:
         'openid profile email offline_access api://5e039917-1ed1-4706-bd47-1f1608c10e09/shortlinks:maintenance',
