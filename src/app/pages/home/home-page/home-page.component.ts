@@ -55,7 +55,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   logout() {
     this.oidcSecurityService.logoffLocal();
-    //    this.oidcSecurityService.logoff();
+    this.oidcSecurityService.logoff();
+    this.loggedIn = false;
   }
 
   ngOnInit(): void {
