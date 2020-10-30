@@ -4,7 +4,11 @@
   },
   "Home": {
     "Description": "Awesome, you're trying to share content and make your links shorter. Because we want you to have full control over your links, we ask you to login. You don't have to create an account, just log in with your favorite login authority and you're good to go.",
-    "Instruction": "Type or paste your link in the textbox below to shorten it."
+    "Instruction": "Type or paste your link in the textbox below to shorten it.",
+    "LoggedOff": {
+      "Header": "Logged off",
+      "Description": "You've succesfully logged off from our system."
+    }
   },
   "Maintenance": {
     "Header": "ShortLinks Maintenance Mode",
@@ -32,7 +36,8 @@
     "Maintenance": "Maintenance",
     "Delete": "Delete",
     "Save": "Save",
-    "Back": "Back"
+    "Back": "Back",
+    "BackToMain": "Back to main"
   },
   "Crumble": {
     "All": "All"
