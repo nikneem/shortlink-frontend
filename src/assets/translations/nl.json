@@ -1,9 +1,52 @@
 {
+  "App": {
+    "Subtitle": "Klein, maar krachtig"
+  },
+  "Home": {
+    "Description": "Cool, je probeert links te delen, maar ze zijn een beetje lang? Met 4dn.me maak je ze een stuk korter. Omdat we jou de volledige controle willen geven over jouw eigen links, vragen we je wel in te loggen. Dit kan gewoon met een bestaand Microsoft account.",
+    "Instruction": "Voer hier je link in om een verkorte versie te maken",
+    "LoggedOff": {
+      "Header": "Uitgelogd",
+      "Description": "Je bent uitgelogd. Wij weten in ieder geval niet meer wie je bent..."
+    },
+    "AuthFailed": {
+      "Header": "Ongeautoriseerd",
+      "Description": "Oops, er is iets mis gegaan met inloggen. Blijkbaar heb je geen toegang tot ons systeem. Op dit moment hebben we een storing wanneer je probeert in te loggen met een persoonlijk account."
+    }
+  },
+  "Maintenance": {
+    "Header": "ShortLinks Beheer modus",
+    "Code": "Code",
+    "Endpoint": "Doel adres",
+    "Created": "Aangemaakt",
+    "Expiration": "Verloopdatum",
+    "Hits": "Bezoeken",
+    "EmptyState": {
+      "Title": "Het is helemaal leeg hier",
+      "Message": "We hebben overal gezocht, maar we kunnen echt geen gegevens vinden die jou toebehoort."
+    }
+  },
   "ErrorCode": {
-    "InvalidUrl": "Deze URL is ongeldig. Voer een geldige URL in en probeer het opnieuw."
+    "InvalidUrl": "De URL is ongeldig. Voer een geldig web adres in.",
+    "InvalidShortCode": "De verkorte code is ongeldig of reeds in gebruik",
+    "InvalidUpdateRequestErrorCode": "Ongeldige aanvraag voor het bijwerken van de verkorte link. De verkorte link is niet bijgewerkt.",
+    "ShortCodeNotFoundErrorCode": "Deze verkortings code is niet gevonden"
   },
   "DeleteConfirmation": {
     "Title": "Verwijder {{name}}",
-    "Message": "Door het verwijderen van een shortlink zal de verkorte link niet meer werken en worden alle gerelateerde statistieken permanent verwijderd. Weet u zeker dat u '{{name}}' wilt verwijderen?"
+    "Message": "Met het verwijderen van een verkorte link, is deze link niet meer bruikbaar. Ook zal alle historie van de link verwijderd worden. Wil je '{{name}}' verwijderen?"
+  },
+  "Button": {
+    "Login": "Inloggen",
+    "New": "Nieuw",
+    "Logout": "Uitloggen",
+    "Maintenance": "Beheer",
+    "Delete": "Verwijderen",
+    "Save": "Opslaan",
+    "Back": "Terug",
+    "BackToMain": "Terug naar de hoofdpagina"
+  },
+  "Crumble": {
+    "All": "Alles"
   }
 }

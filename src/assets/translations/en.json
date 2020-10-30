@@ -8,6 +8,10 @@
     "LoggedOff": {
       "Header": "Logged off",
       "Description": "You've succesfully logged off from our system."
+    },
+    "AuthFailed": {
+      "Header": "Unauthorized",
+      "Description": "Oops, authorization failed, apparently you're not allowed to access this system with your account. At this time, we experience issues logging in with a personal account. Try a Work- or school account instead."
     }
   },
   "Maintenance": {
@@ -23,7 +27,10 @@
     }
   },
   "ErrorCode": {
-    "InvalidUrl": "This URL is invalid, please enter a valid URL Endpoint"
+    "InvalidUrl": "This URL is invalid, please enter a valid URL Endpoint",
+    "InvalidShortCode": "The short code is invalid ar already used",
+    "InvalidUpdateRequestErrorCode": "Cannot process the update request. The short link is not updated",
+    "ShortCodeNotFoundErrorCode": "The short code was not found on the server"
   },
   "DeleteConfirmation": {
     "Title": "Delete {{name}}",
